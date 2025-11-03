@@ -2,6 +2,14 @@
  * HashTable.h
  */
 
+#ifndef HASHTABLE_H
+#define HASHTABLE_H
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <optional>
+
 using namespace std;
 
 enum class BucketType { NORMAL, ESS, EAR };
@@ -9,44 +17,47 @@ enum class BucketType { NORMAL, ESS, EAR };
 class HashTableBucket {
 public:
 
-    HashTableBucket::HashTableBucket();
+    string key;
+    size_t value;
+    BucketType type;
 
-    HashTableBucket::HashTableBucket(string key, int value);
-
-    void HashTableBucket::load(string key, int value);
-
-    bool HashTableBucket::isEmpty() const;
+    HashTableBucket();
+    HashTableBucket(string key, int value);
+    void load(string key, int value);
+    bool isEmpty() const;
 
     friend ostream& operator<<(ostream& os, const HashTableBucket& bucket);
 
-}
+};
 
 class HashTable {
 public:
 
-    HashTable::HashTable(size_t initCapacity = 8);
-
-    bool HashTable::insert(std::string key, size_t value);
-
-    bool HashTable::remove(std::string key);
-
-    bool HashTable::contains(const string& key) const;
-
-    std::optional<int> HashTable::get(const string& key) const;
-
-    int& HashTable::operator[](const string& key);
-
-    std::vector<string> HashTable::keys() const;
-
-    double HashTable::alpha() const;
-
-    size_t HashTable::capacity() const;
-
-    size_t HashTable::size() const;
+    HashTable(size_t initCapacity = 8);
+    bool insert(string key, size_t value);
+    bool remove(string key);
+    bool contains(const string& key) const;
+    optional<int> get(const string& key) const;
+    int& operator[](const string& key);
+    vector<string> keys() const;
+    double alpha() const;
+    size_t capacity() const;
+    size_t size() const;
 
     friend ostream& operator<<(ostream& os, const HashTable& hashTable);
 
-}
+private:
+    vector<HashTableBucket> tableData;
+    vector<size_t> offsets;
+    size_t currentSize = 0;
+    size_t currentCapacity = 0;
+
+    void generateOffsets();
+    void resize();
+
+};
+
+#endif
 
 /**
 * Only a single constructor that takes an initial capacity for the table is
