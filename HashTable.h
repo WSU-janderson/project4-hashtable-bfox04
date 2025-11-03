@@ -6,7 +6,7 @@
 #define HASHTABLE_H
 
 #include <iostream>
-#include <string>
+#include <cstdlib>
 #include <vector>
 #include <optional>
 
@@ -52,8 +52,8 @@ private:
     size_t currentSize = 0;
     size_t currentCapacity = 0;
 
-    void generateOffsets();
     void resize();
+    void generateOffsets();
 
 };
 

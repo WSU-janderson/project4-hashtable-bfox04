@@ -21,5 +21,10 @@ int main() {
     cout <<  Bobby << endl;
     cout<< Bobby.isEmpty() << endl;
 
+    HashTable roundTable(3);
+    HashTable eightSidedTable();
+
+
+
     return 0;
 }
