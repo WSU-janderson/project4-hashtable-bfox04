@@ -18,7 +18,7 @@ class HashTableBucket {
 public:
 
     string key;
-    size_t value;
+    int value;
     BucketType type;
 
     HashTableBucket();
