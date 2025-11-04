@@ -33,7 +33,9 @@ public:
 class HashTable {
 public:
 
-    HashTable(size_t initCapacity = 8);
+    static constexpr size_t DEFAULT_INITIAL_CAPACITY = 8; // add this due to build failure w/ test harness
+    HashTable(size_t initCapacity = DEFAULT_INITIAL_CAPACITY);
+
     bool insert(string key, size_t value);
     bool remove(string key);
     bool contains(const string& key) const;
